@@ -9,11 +9,11 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>fgjcdmx.gob</groupId>
-	<artifactId>vehiculos-back</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<artifactId>sava</artifactId>
+	<version>1.0.0</version>
 	<packaging>war</packaging>
-	<name>vehiculos-back</name>
-	<description>Consulta de vehiculos (Backend)</description>
+	<name>Sistema de Atención de Vehiculos Asegurados</name>
+	<description>Consulta de vehiculos asegurados por la cdmx(Backend)</description>
 	<url/>
 	<licenses>
 		<license/>
@@ -43,13 +43,6 @@
 			<scope>test</scope>
 		</dependency>
 
-		<!-- Servidor -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-tomcat</artifactId>
-<!--			<scope>provided</scope>-->
-		</dependency>
-
 		<!-- Lombok (Getters y Setters) -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
@@ -63,7 +56,91 @@
 			<artifactId>dotenv-java</artifactId>
 			<version>3.2.0</version>
 		</dependency>
+
+		<!-- Base de datos -->
+		<dependency>
+			<groupId>com.ibm.informix</groupId>
+			<artifactId>informix-jdbc-complete</artifactId>
+			<version>4.50.4.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
+
+		<!-- JDBC A BD -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-jdbc</artifactId>
+			<version>3.4.5</version>
+		</dependency>
 	</dependencies>
+
+	<!-- PERFILES -->
+	<profiles>
+		<!-- Desarrollo -->
+		<profile>
+			<id>dev</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<build.profile.id>dev</build.profile.id>
+				<profileActive>dev</profileActive>
+			</properties>
+			<dependencies>
+				<!-- Servidor -->
+				<dependency>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-tomcat</artifactId>
+				</dependency>
+			</dependencies>
+			<build>
+				<resources>
+					<resource>
+						<directory>src/main/resources</directory>
+						<filtering>true</filtering>
+					</resource>
+				</resources>
+			</build>
+		</profile>
+		<!-- End Desarrollo -->
+
+		<!-- Producción -->
+		<profile>
+			<id>prod</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<properties>
+				<build.profile.id>prod</build.profile.id>
+				<profileActive>prod</profileActive>
+			</properties>
+			<dependencies>
+				<!-- Servidor -->
+				<dependency>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-tomcat</artifactId>
+					<scope>provided</scope>
+				</dependency>
+			</dependencies>
+			<build>
+				<resources>
+					<resource>
+						<directory>src/main/resources</directory>
+						<filtering>true</filtering>
+						<excludes>
+							<exclude>.env</exclude>
+						</excludes>
+					</resource>
+				</resources>
+			</build>
+		</profile>
+		<!-- End produccion -->
+	</profiles>
 
 	<build>
 		<plugins>
@@ -93,5 +170,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
 </project>
