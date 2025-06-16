@@ -1,4 +1,4 @@
-package fgjcdmx.gob.vehiculos_back;
+package fgjcdmx.gob.sava;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

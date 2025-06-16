@@ -42,8 +42,8 @@ public class ComplainantService {
 
     // Guardar denunciante
     public Integer saveComplainant(ComplainantDto dto) {
-        boolean exist = this.existComplainant(dto.getCtrluinv());
-        if(exist) return 2;
+//        boolean exist = this.existComplainant(dto.getCtrluinv());
+//        if(exist) return 2;
 
         Integer save = this.complainantImpl.saveComplainant(dto);
         if(save != 1) return 1;

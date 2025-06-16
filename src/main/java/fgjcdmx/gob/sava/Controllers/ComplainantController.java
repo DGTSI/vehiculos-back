@@ -30,7 +30,7 @@ public class ComplainantController {
         }
     }
 
-    // Api - Guardar datos del denunciante
+            // Api - Guardar datos del denunciante
     @PostMapping("save-complainant")
     public ResponseEntity<?> saveComplainant(
             @RequestBody ComplainantDto dto
@@ -43,7 +43,10 @@ public class ComplainantController {
             return ResponseEntity.status(HttpStatus.OK).body(validate);
         } catch (DataAccessException e) {
             MessagesUtil.soutError(e.getLocalizedMessage());
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getLocalizedMessage());
+            // Los datos no cumplen las reglas en BD
+            if(e.toString().contains("DataIntegrityViolationException"))
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
 }
