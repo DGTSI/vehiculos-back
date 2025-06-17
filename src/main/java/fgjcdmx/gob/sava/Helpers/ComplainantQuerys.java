@@ -40,11 +40,25 @@ public class ComplainantQuerys {
         StringBuilder query = new StringBuilder();
 
         query
-                .append("INSERT INTO tb_dueño ")
+                .append("INSERT INTO tb_denunciante ")
                 .append("(nombre, paterno, materno, curp, telefono1, telefono2, correo, codigo_postal, calle, num_ext, num_int, status, ctrluinv, ctrllave, cvecalidadper) ")
                 .append("VALUES ")
                 .append("(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
         return query.toString();
     }
+
+    // Query para guardar los datos de contacto
+    public static String saveContactQuery() {
+        StringBuilder query = new StringBuilder();
+
+        query
+                .append("INSERT INTO tb_contacto ")
+                .append("(nombre, paterno, materno, curp, telefono1, telefono2, correo, codigo_postal, calle, num_ext, num_int, status, ctrluinv, ctrllave, cvecalidadper) ")
+                .append("VALUES ")
+                .append("(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+
+        return query.toString();
+    }
+
 }

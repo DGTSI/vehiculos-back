@@ -1,11 +1,11 @@
 package fgjcdmx.gob.sava.Services;
 
 import fgjcdmx.gob.sava.Impl.ComplainantImpl;
-import fgjcdmx.gob.sava.Models.Dtos.ComplainantDto;
 import fgjcdmx.gob.sava.Models.Entities.CatPostalCode;
 import fgjcdmx.gob.sava.Models.Entities.Complainant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 
 @Service
 public class ComplainantService {
@@ -41,13 +41,25 @@ public class ComplainantService {
     }
 
     // Guardar denunciante
-    public Integer saveComplainant(ComplainantDto dto) {
-//        boolean exist = this.existComplainant(dto.getCtrluinv());
-//        if(exist) return 2;
+    public Integer saveComplainantAndContact(String ctrluniv, Complainant dto) {
+        Integer exist = this.complainantImpl.verifyContact(ctrluniv);
+        if(exist > 0) return 2;
+        Complainant denunciante = this.findComplainantByCtrluinv(ctrluniv);
 
-        Integer save = this.complainantImpl.saveComplainant(dto);
-        if(save != 1) return 1;
+        dto.setCtrluinv(denunciante.getCtrluinv());
+        dto.setCtrllave(denunciante.getCtrllave());
+        dto.setCvecalidadper(denunciante.getCvecalidadper());
+
+        this.complainantImpl.saveContact(dto);
+        this.complainantImpl.saveComplainant(denunciante);
 
         return 0;
     }
+
+    // Verificar existencia del contacto
+    public boolean verifyContact(String ctrluinv) {
+        Integer numRows = this.complainantImpl.verifyContact(ctrluinv);
+        return numRows > 0;
+    }
+
 }

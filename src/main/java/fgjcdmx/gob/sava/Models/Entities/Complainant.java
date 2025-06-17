@@ -27,3 +27,4 @@ public class Complainant {
     private String correoe;
     private String curp;
 }
+

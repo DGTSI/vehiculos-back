@@ -1,4 +1,4 @@
-package fgjcdmx.gob.sava.Models.Dtos;
+package fgjcdmx.gob.sava.Models.Entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,7 +7,9 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ComplainantDto {
+
+public class Contact {
+
     private String ctrluinv;
     private String ctrllave;
     private String cvecalidadper;
@@ -19,10 +21,12 @@ public class ComplainantDto {
     private String nointerior;
     private String referencia;
     private String codigopostal;
+    private String colonia;
+    private String municipio;
+    private String estado;
     private String telefono;
     private String celular;
     private String correoe;
     private String curp;
 
 }
-

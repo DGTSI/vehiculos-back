@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>fgjcdmx.gob</groupId>
 	<artifactId>sava</artifactId>
-	<version>1.0.0</version>
+	<version>1.1.0</version>
 	<packaging>war</packaging>
 	<name>Sistema de Atención de Vehiculos Asegurados</name>
 	<description>Consulta de vehiculos asegurados por la cdmx(Backend)</description>

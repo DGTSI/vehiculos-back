@@ -1,6 +1,5 @@
 package fgjcdmx.gob.sava.Interfaces;
 
-import fgjcdmx.gob.sava.Models.Dtos.ComplainantDto;
 import fgjcdmx.gob.sava.Models.Entities.Complainant;
 
 public interface IComplainant {
@@ -12,5 +11,5 @@ public interface IComplainant {
     public Integer validateComplainantByCtrluinv(String ctrluinv);
 
     // Guardar datos del denunciante
-    public Integer saveComplainant(ComplainantDto dto);
+    public Integer saveComplainant(Complainant dto);
 }
